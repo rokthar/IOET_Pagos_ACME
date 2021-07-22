@@ -106,8 +106,6 @@ From ```main.py``` it is sent to execute the functions of the view for the start
 
 Finally there is the file ```test_calculadoraPagos.py``` in which there are several methods to test different ways in which the information can be written in the txt file, these tests were performed with the framework [PyTest](https://docs.pytest.org/en/6.2.x/getting-started.html), which facilitates the generation of unit tests.
 
-
-Translated with www.DeepL.com/Translator (free version)
 ## Testing (PyTest)
 ### Requirements
 * Install [PyTest](https://docs.pytest.org/en/6.2.x/getting-started.html)
