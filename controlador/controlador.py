@@ -2,15 +2,6 @@ from modelo.modelo import Person
 import vistas.vistas as vistas
 import constantes
 
-def mostrarInformacion(archivo):
-    data = Person.obtenerInformacion(archivo)
-    if data == "Error":
-        return vistas.presetarErrorArchivo(archivo)
-    
-    for lineas in data: 
-        linea = lineas.replace(" ","")
-        generarPago(linea)
-
 def generarPago(data):
     separarNombreHoras = data.split('=')
 
@@ -44,28 +35,28 @@ def obtenerPago(horarios):
         horaInicio = dataHoras[0].split(":")
         horaFin = dataHoras[1].split(":")
 
-        if (len(horaInicio) != 2 or len(horaFin) != 2):
-            return "Error"
-
-        # if (dia != "MO") and (dia != "TU") and (dia != "WE") and (dia != "TH") and (dia != "FR") and (dia != "SA") and (dia != "SU"):  
-        #     return "Error"
-
         if (dia in constantes.SEMANA or dia in constantes.FIN_SEMANA):
-            ""
+            
+            if (len(horaInicio) != 2 or len(horaFin) != 2):
+                return "Error"
+
+            if int(horaInicio[0]) > 24 or int(horaFin[0]) > 24:
+                return "Error"
+        
+            if int(horaInicio[1]) > 59 or int(horaFin[1]) > 59:
+                return "Error"
+            
+            valorHora = obtenerPagoHora(horaInicio, horaFin, dia)
+            
+            if valorHora == "Error":
+                return "Error"
+            
+            pago = calcularPago(horaInicio, horaFin, valorHora) + pago
         else:
             return "Error"
 
-        if int(horaInicio[0]) > 24 or int(horaFin[0]) > 24:
-            return "Error"
         
-        if int(horaInicio[1]) > 59 or int(horaFin[1]) > 59:
-            return "Error"
 
-        valorHora = obtenerPagoHora(horaInicio, horaFin, dia)
-        if valorHora == "Error":
-            return "Error"
-
-        pago = calcularPago(horaInicio, horaFin, valorHora) + pago
     return pago
 
 def calcularPago(inicio, fin, valor):
@@ -127,9 +118,3 @@ def obtenerPagoHora(horaInicio, horaFin, dia):
             return 25
     else:
         return "Error"    
-
-def start():
-    archivo = vistas.iniciarSistema()
-    return mostrarInformacion(archivo)
-
-
