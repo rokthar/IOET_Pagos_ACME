@@ -1,15 +1,15 @@
 from modelo.modelo import Person
 import vistas.vistas as vistas
+import constantes
 
-def showAll(archivo):
-    data = Person.getAll(archivo)
+def mostrarInformacion(archivo):
+    data = Person.obtenerInformacion(archivo)
     if data == "Error":
         return vistas.presetarErrorArchivo(archivo)
     
-    for linea in data: 
-        l = linea.replace(" ","")
-        vistas.showAllView(l)
-        generarPago(l)
+    for lineas in data: 
+        linea = lineas.replace(" ","")
+        generarPago(linea)
 
 def generarPago(data):
     separarNombreHoras = data.split('=')
@@ -28,7 +28,6 @@ def generarPago(data):
     return vistas.presentarResultado(persona)
 
 def obtenerPago(horarios):
-    print(horarios)
     pago = 0
     for hora in horarios:
         dia = hora[0:2]
@@ -41,16 +40,25 @@ def obtenerPago(horarios):
         if dataHoras[1] == '00:00':
             dataHoras[1] == '24:00'
         
+        vistas.mostrarData(dia,dataHoras)
         horaInicio = dataHoras[0].split(":")
         horaFin = dataHoras[1].split(":")
 
         if (len(horaInicio) != 2 or len(horaFin) != 2):
             return "Error"
 
-        if (dia != "MO") and (dia != "TU") and (dia != "WE") and (dia != "TH") and (dia != "FR") and (dia != "SA") and (dia != "SU"):  
+        # if (dia != "MO") and (dia != "TU") and (dia != "WE") and (dia != "TH") and (dia != "FR") and (dia != "SA") and (dia != "SU"):  
+        #     return "Error"
+
+        if (dia in constantes.SEMANA or dia in constantes.FIN_SEMANA):
+            ""
+        else:
             return "Error"
 
         if int(horaInicio[0]) > 24 or int(horaFin[0]) > 24:
+            return "Error"
+        
+        if int(horaInicio[1]) > 59 or int(horaFin[1]) > 59:
             return "Error"
 
         valorHora = obtenerPagoHora(horaInicio, horaFin, dia)
@@ -78,50 +86,50 @@ def calcularPago(inicio, fin, valor):
 
 def obtenerPagoHora(horaInicio, horaFin, dia):
     
-    if (dia == "MO") or (dia == "TU") or (dia == "WE") or (dia == "TH") or (dia == "FR"):
+    if dia in constantes.SEMANA:
         
-        if (int(horaInicio[0]) >= 0) and (int(horaFin[0]) <= 9):
-            if (int(horaInicio[0]) == 0) and (int(horaInicio[1]) >= 1):
-                if (int(horaFin[0]) == 9) and (int(horaFin[1]) == 0):
+        if (int(horaInicio[0]) >= constantes.HORARIO_DIA[0]) and (int(horaFin[0]) <= constantes.HORARIO_DIA[2]):
+            if (int(horaInicio[0]) == constantes.HORARIO_DIA[0]) and (int(horaInicio[1]) >= constantes.HORARIO_DIA[1]):
+                if (int(horaFin[0]) == constantes.HORARIO_DIA[2]) and (int(horaFin[1]) == constantes.HORARIO_DIA[3]):
                     return 25
             return 25
         
-        if (int(horaInicio[0]) >= 9) and (int(horaFin[0]) <= 18):
-            if (int(horaInicio[0]) == 9) and (int(horaInicio[1]) >= 1):
-                if (int(horaFin[0]) == 18) and (int(horaFin[1]) == 0):
+        if (int(horaInicio[0]) >= constantes.HORARIO_TARDE[0]) and (int(horaFin[0]) <= constantes.HORARIO_TARDE[2]):
+            if (int(horaInicio[0]) == constantes.HORARIO_TARDE[0]) and (int(horaInicio[1]) >= constantes.HORARIO_TARDE[1]):
+                if (int(horaFin[0]) == constantes.HORARIO_TARDE[2]) and (int(horaFin[1]) == constantes.HORARIO_TARDE[3]):
                     return 15
             return 15
 
-        if (int(horaInicio[0]) >= 18) and (int(horaFin[0]) <= 24):
-            if (int(horaInicio[0]) == 18) and (int(horaInicio[1]) >= 1):
-                if (int(horaFin[0]) == 24) and (int(horaFin[1]) == 0):
+        if (int(horaInicio[0]) >= constantes.HORARIO_NOCHE[0]) and (int(horaFin[0]) <= constantes.HORARIO_NOCHE[2]):
+            if (int(horaInicio[0]) == constantes.HORARIO_NOCHE[0]) and (int(horaInicio[1]) >= constantes.HORARIO_NOCHE[1]):
+                if (int(horaFin[0]) == constantes.HORARIO_NOCHE[2]) and (int(horaFin[1]) == constantes.HORARIO_NOCHE[3]):
                     return 20
             return 20
         
-    if (dia == "SA") or (dia == "SU"):
+    if dia in constantes.FIN_SEMANA:
 
-        if (int(horaInicio[0]) >= 0) and (int(horaFin[0]) <= 9):
-            if (int(horaInicio[0]) == 0) and (int(horaInicio[1]) >= 1):
-                if (int(horaFin[0]) == 9) and (int(horaFin[1]) == 0):
+        if (int(horaInicio[0]) >= constantes.HORARIO_DIA[0]) and (int(horaFin[0]) <= constantes.HORARIO_DIA[2]):
+            if (int(horaInicio[0]) == constantes.HORARIO_DIA[0]) and (int(horaInicio[1]) >= constantes.HORARIO_DIA[1]):
+                if (int(horaFin[0]) == constantes.HORARIO_DIA[2]) and (int(horaFin[1]) == constantes.HORARIO_DIA[3]):
                     return 30
             return 30
 
-        if (int(horaInicio[0]) >= 9) and (int(horaFin[0]) <= 18):
-            if (int(horaInicio[0]) == 9) and (int(horaInicio[1]) >= 1):
-                if (int(horaFin[0]) == 18) and (int(horaFin[1]) == 0):
+        if (int(horaInicio[0]) >= constantes.HORARIO_TARDE[0]) and (int(horaFin[0]) <= constantes.HORARIO_TARDE[2]):
+            if (int(horaInicio[0]) == constantes.HORARIO_TARDE[0]) and (int(horaInicio[1]) >= constantes.HORARIO_TARDE[1]):
+                if (int(horaFin[0]) == constantes.HORARIO_TARDE[2]) and (int(horaFin[1]) == constantes.HORARIO_TARDE[3]):
                     return 20
             return 20
 
-        if (int(horaInicio[0]) >= 18) and (int(horaFin[0]) <= 24):
-            if (int(horaInicio[0]) == 18) and (int(horaInicio[1]) >= 1):
-                if (int(horaFin[0]) == 24) and (int(horaFin[1]) == 0):
+        if (int(horaInicio[0]) >= constantes.HORARIO_NOCHE[0]) and (int(horaFin[0]) <= constantes.HORARIO_NOCHE[2]):
+            if (int(horaInicio[0]) == constantes.HORARIO_NOCHE[0]) and (int(horaInicio[1]) >= constantes.HORARIO_NOCHE[1]):
+                if (int(horaFin[0]) == constantes.HORARIO_NOCHE[2]) and (int(horaFin[1]) == constantes.HORARIO_NOCHE[3]):
                     return 25
             return 25
     else:
         return "Error"    
 
 def start():
-    archivo = vistas.startView()
-    return showAll(archivo)
+    archivo = vistas.iniciarSistema()
+    return mostrarInformacion(archivo)
 
 

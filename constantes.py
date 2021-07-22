@@ -1,0 +1,6 @@
+SEMANA = ["MO", "TU", "WE", "TH", "FR"]
+FIN_SEMANA = ["SA", "SU"]
+
+HORARIO_DIA = [0,1,9,0]
+HORARIO_TARDE = [9,1,18,0]
+HORARIO_NOCHE = [18,1,24,0]

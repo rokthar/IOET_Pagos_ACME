@@ -1,7 +1,7 @@
-def showAllView(data):
-    print (data)
+def mostrarData(dia, horario):
+    print("Dia: "+ dia + " | Horario: " + horario[0] + "-" + horario[1])
 
-def startView():
+def iniciarSistema():
     print ('CALCULADORA DE PAGOS\n')
     print ('Ingrese el nombre del archivo .txt a analizar')
     archivo = input()

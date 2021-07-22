@@ -5,7 +5,7 @@ class Person(object):
         self.pago = pago
 
     @classmethod
-    def getAll(self, archivo):
+    def obtenerInformacion(self, archivo):
         try:
             database = open(archivo+'.txt', 'r')
             mensaje = database.readlines()
