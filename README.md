@@ -1,13 +1,13 @@
 # ACME Salary Calculator
 ## Contents
 1. [Exercise](#exercise)
-2. [How to run locally?](#howtorun)
+2. [How to run locally?](#how-to-run-locally)
 3. [Architecture](#architecture)
-4. [Approach & Methodology](#methodology)
-5. [Testing (PyTest)](#testing)
+4. [Approach & Methodology](#approach)
+5. [Testing (PyTest)](#testing-pytest)
 6. [Developer's final comment](#comment)
 
-## Excercise
+## Exercise
 The company ACME offers their employees the flexibility to work the hours they want. They will pay for the hours worked based on the day of the week and time of day, according to the following table:
 ```plain
 Monday - Friday
