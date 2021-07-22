@@ -90,7 +90,7 @@ The main code structure is:
 * Get the value to be paid per hour, according to the day and time range
 * Calculate the payment, multiplying the hourly value by the hours worked.
 * Show the result to the user
-* 
+
 ### The methodology used in the project is detailed below:
 I started with setting up the environment, creating the basic project files, creating the repository, creating the README and configuring the GitHub shares.
 
