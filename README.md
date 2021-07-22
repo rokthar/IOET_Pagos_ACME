@@ -92,7 +92,22 @@ The main code structure is:
 * Show the result to the user
 * 
 ### The methodology used in the project is detailed below:
+I started with setting up the environment, creating the basic project files, creating the repository, creating the README and configuring the GitHub shares.
 
+Then the basic requirements of the exercise were obtained, that is, what was required for the project to be considered functional.
+
+The files ```model.py```, ```controller.py``` and ```view.py``` were created according to the MVC pattern, also the ```main.py``` file was created where the program is executed and the ```constants.py``` file where the constants to be used in the program are placed.
+
+Then we proceeded to write the program logic, in ```model.py``` the ```open``` and ```readLines``` function is used to open and read the .txt document; this information is sent to the controller.
+
+In ```controller.py``` the lines are separated to obtain the necessary information, the name and the working time ranges are obtained, each one with its respective day; then it is validated that the information is correct, that is to say verifying that there are days and that these are part of the days of the week, besides that the hours do not exceed 24 hours and that the minutes do not exceed the value of 59. Subsequently, the value to be paid per hour is obtained, according to the day and the time range in which it was worked and finally the value to be paid is calculated, which increases with each schedule in the information of the txt file.
+
+From ```main.py``` it is sent to execute the functions of the view for the start of the program and after the calculation the result of the amount to be paid is presented through console.
+
+Finally there is the file ```test_calculadoraPagos.py``` in which there are several methods to test different ways in which the information can be written in the txt file, these tests were performed with the framework [PyTest](https://docs.pytest.org/en/6.2.x/getting-started.html), which facilitates the generation of unit tests.
+
+
+Translated with www.DeepL.com/Translator (free version)
 ## Testing (PyTest)
 ### Requirements
 * Install [PyTest](https://docs.pytest.org/en/6.2.x/getting-started.html)
