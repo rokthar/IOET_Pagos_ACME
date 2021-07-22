@@ -3,9 +3,9 @@
 1. [Exercise](#exercise)
 2. [How to run locally?](#how-to-run-locally)
 3. [Architecture](#architecture)
-4. [Approach & Methodology](#approach)
+4. [Methodology](#methodology)
 5. [Testing (PyTest)](#testing-pytest)
-6. [Developer's final comment](#comment)
+6. [Comment](#comment)
 
 ## Exercise
 The company ACME offers their employees the flexibility to work the hours they want. They will pay for the hours worked based on the day of the week and time of day, according to the following table:
@@ -74,7 +74,7 @@ The program is structured using the MVC architecture; it contains the directorie
 * **View:** Contains the functions necessary to present the response messages to the user.
 * **Controler:** t contains the necessary functions to calculate the payment to be made, as well as the functions to check that the file has the indicated structure.
 
-## Approach & Methodology
+## Methodology
 I used the Python language because of how easy it is to handle strings and arrays. 
 The open() function was used, which reads the content of the text file and allows to store it in a variable.
 I used this language because I am learning it and I wanted to test myself if I could complete this exercise with a new language and apply the MVC pattern and architecture.
@@ -117,7 +117,7 @@ Finally there is the file ```test_calculadoraPagos.py``` in which there are seve
 * Write the command ```pytest```
 * See the results
 
-## Developer's final comment
+## Comment
 I had a lot of fun solving this exercise, as it allowed me to learn and reinforce my knowledge with the Python programming language.
 
 Also, for me all this was very important, because thanks to this exercise I realized how the company works and not only that, but also the things that the developers do, and the other people who collaborate in the creation and development of the company's projects. It only remains for me to say thank you very much for this incredible experience and I hope to meet all your expectations.
