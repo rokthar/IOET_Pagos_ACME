@@ -8,8 +8,8 @@ class Person(object):
     def getAll(self, archivo):
         try:
             database = open(archivo+'.txt', 'r')
-            mensaje = database.read()
-            return mensaje.replace(" ", "")
+            mensaje = database.readlines()
+            return mensaje
         except:
             mensaje = "Error"
             return mensaje

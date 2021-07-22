@@ -5,9 +5,11 @@ def showAll(archivo):
     data = Person.getAll(archivo)
     if data == "Error":
         return vistas.presetarErrorArchivo(archivo)
-
-    vistas.showAllView(data)
-    generarPago(data)
+    
+    for linea in data: 
+        l = linea.replace(" ","")
+        vistas.showAllView(l)
+        generarPago(l)
 
 def generarPago(data):
     separarNombreHoras = data.split('=')
@@ -62,9 +64,17 @@ def calcularPago(inicio, fin, valor):
     if (int(inicio[0]) < 0) or (int(inicio[1]) < 0) or (int(fin[0]) < 0) or (int(fin[1]) < 0):
         return "Error"
 
-    diffHoras = int(fin[0]) - int(inicio[0])
-    pago = diffHoras * valor
-    return pago
+    if (int(fin[1]) >= int(inicio[1])):    
+        diffHoras = int(fin[0]) - int(inicio[0])
+        pago = diffHoras * valor
+        return pago
+
+    if (int(inicio[1]) != int(fin[1])):
+        diffHoras = int(fin[0]) - int(inicio[0]) -1
+        pago = diffHoras * valor
+        return pago
+
+    
 
 def obtenerPagoHora(horaInicio, horaFin, dia):
     
