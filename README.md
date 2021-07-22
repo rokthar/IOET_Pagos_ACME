@@ -72,7 +72,11 @@ The amount to pay ASTRID is: 85 USD
 The program is structured using the MVC architecture; it contains the directories for the model, view and controller, as well as the main.py file, which executes the program.
 * **Model:** It contains the class to create the object that will be used to present the program response, besides the function getData, which reads the txt file and returns the information inside the file, in case the file does not exist, it returns "Error".
 * **View:** Contains the functions necessary to present the response messages to the user.
-* **Controler:** t contains the necessary functions to calculate the payment to be made, as well as the functions to check that the file has the indicated structure.
+* **Controler:** It contains the necessary functions to calculate the payment to be made, as well as the functions to check that the file has the indicated structure.
+* **main.py:** Executes the functions of the view for the start of the program, then it performs the calculation using the controller and finally the result of the amount to be paid is presented through the console.
+* **constants.py** Contains constants to be used during the execution of the program, these constants are: the days of the working week, days of the weekend and the time ranges for the day, afternoon and night.
+
+Translated with www.DeepL.com/Translator (free version)
 
 ## Methodology
 I used the Python language because of how easy it is to handle strings and arrays. 
