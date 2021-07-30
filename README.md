@@ -76,8 +76,6 @@ The program is structured using the MVC architecture; it contains the directorie
 * **main.py:** Executes the functions of the view for the start of the program, then it performs the calculation using the controller and finally the result of the amount to be paid is presented through the console.
 * **constants.py** Contains constants to be used during the execution of the program, these constants are: the days of the working week, days of the weekend and the time ranges for the day, afternoon and night.
 
-Translated with www.DeepL.com/Translator (free version)
-
 ## Methodology
 I used the Python language because of how easy it is to handle strings and arrays. 
 The open() function was used, which reads the content of the text file and allows to store it in a variable.
